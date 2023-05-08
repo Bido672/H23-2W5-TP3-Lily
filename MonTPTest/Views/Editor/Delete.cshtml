@@ -1,14 +1,15 @@
-﻿@model MonTPTest.Models.CarteGraphique
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MonTPTest.Models.CarteGraphique
 
-@{
-    ViewData["Title"] = "View";
+@section title {
+    <title>Supprimer un enfant</title>
 }
 
 <h1>View</h1>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Voulez vous vraiment supprimer cet enfant?</h3>
 <div>
-    <h4>CarteGraphique</h4>
+    <h4>Carte Graphique</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -49,8 +50,8 @@
         </dd>
     </dl>
     
-    <form asp-action="View">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-action="Delete">
+        <input type="text" name="id" value="@Model.Id" hidden/>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
     </form>
 </div>

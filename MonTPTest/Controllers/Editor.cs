@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MonTPTest.Models;
+using NuGet.Versioning;
 
 namespace MonTPTest.Controllers
 {
@@ -76,9 +77,16 @@ namespace MonTPTest.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(string id, IFormCollection collection)
         {
+            Func<IFormCollection, string, string> getKey = (IFormCollection col, string key) =>
+            {
+                return col.ToList().Find(item => { return item.Key == key; }).Value[0].ToString();
+            };
+            string value = getKey(collection, "id");
             try
             {
-                return RedirectToAction(nameof(Index));
+                
+                m_baseDonnees.Remove(m_baseDonnees.TrouverCarte(id));
+                return RedirectToAction("Recherche", "Enfant");
             }
             catch
             {

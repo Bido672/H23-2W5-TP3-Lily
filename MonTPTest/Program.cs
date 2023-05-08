@@ -29,6 +29,10 @@ app.UseRouting();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "gestionEnfantDelete",
+        pattern: "/GestionEnfant/delete/{id}",
+        defaults: new { controller = "Editor", action = "Delete" });
+    endpoints.MapControllerRoute(
         name: "favoris",
         pattern: "/favoris",
         defaults: new { controller = "Favoris", action = "Index" });

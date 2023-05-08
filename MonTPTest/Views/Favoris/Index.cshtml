@@ -1,4 +1,5 @@
-﻿@using MonTPTest.Models;
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using MonTPTest.Models;
 @Model List<MonTPTest.Models.Cartes>
     ;
     
@@ -43,7 +44,7 @@
                                 </td>
                                 <td class="col-3 col-md-3">
                                     <div class="row align-items-center myThing">
-                                        <div class="col-12 text-center"><a href="./Detail.html">@(Carte.Nom)</a></div>
+                                            <div class="col-12 text-center"><a href="@Url.Action("Details", "Enfant", new { id = Carte.Nom.ToUpper()})">@Carte.Nom</a></div>
                                     </div>
                                 </td>
                                 <td class="col-3 col-md-3 text-center">
@@ -59,9 +60,9 @@
                                 <td class="col-2 col-md-1 text-center">
                                     <div class="row align-items-center myThing">
                                         <div class="col-12 text-center">
-                                            <form id="deleteForm" class="row justify-content-around" action="https://www.w3schools.com/action_page.php" method="POST">
-                                                <input type="text" hidden name="nom" value="@(Carte.Nom)">
-                                                    <button class="col-auto" type="submit" title="removeFav" fill-background rounded-corners rounded-corners-padding-small>
+                                            <form asp-controller="Favoris" asp-action="RetirerUnFavoris" class="row justify-content-around" method="POST">
+                                                <input type="text" hidden name="id" value="@(Carte.Id)">
+                                                <button class="col-auto" type="submit" title="removeFav" fill-background rounded-corners rounded-corners-padding-small>
                                                         <p class="inlineForRoundButton">&nbsp;<i class="fa-regular fa-trash-can"></i>&nbsp;</p>
                                                 </button>
                                             </form>

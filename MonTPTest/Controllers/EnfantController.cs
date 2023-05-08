@@ -7,6 +7,9 @@ using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
 using System.Drawing.Text;
 using System.Net.NetworkInformation;
+using Microsoft.AspNetCore.Http;
+using MonTPTest.Extensions;
+using System.Linq;
 
 namespace MonTPTest.Controllers
 {
@@ -236,7 +239,22 @@ namespace MonTPTest.Controllers
 
         public IActionResult Details(string id)
         {
-            return View("Details", m_baseDonnees.TrouverCarte(id));
+            bool EstFav = false;
+            var enfantIDs = HttpContext.Session.Get<List<int>>("enfantsIDs");
+            try
+            {
+                if (enfantIDs != null)
+                {
+                    if (enfantIDs.Contains(m_baseDonnees.TrouverCarte(id).Id))
+                    {
+                        EstFav = true;
+                    }
+                }
+            }catch(Exception e)
+            {
+
+            }
+            return View("Details", new DetailsViewModel(m_baseDonnees.TrouverCarte(id), EstFav));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿@Model MonTPTest.Models.CarteGraphique;
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@Model MonTPTest.Models.DetailsViewModel;
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -6,23 +7,23 @@
     <title>Détails</title>
 }
 <body id="details">
-    @if (Model != null)
+    @if (Model != null && Model.Carte != null)
     {
-        <main id="infoCarte" marque-carte="@Model.Marque.Nom" class="container" custom-border rounded-corners fill-background>
+        <main id="infoCarte" marque-carte="@Model.Carte.Marque.Nom" class="container" custom-border rounded-corners fill-background>
             <div class="row">
                 <div class="col-12">
-                    <h1 id="nomCarte">@Model.Nom</h1>
+                    <h1 id="nomCarte">@Model.Carte.Nom</h1>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-2 col-sm-12">
-                    <img class="img-fluid" src="@Model.ImageCarte" alt="@Model.ToString()" custom-border rounded-corners fill-background />
+                    <img class="img-fluid" src="@Model.Carte.ImageCarte" alt="@Model.Carte.ToString()" custom-border rounded-corners fill-background />
                 </div>
                 <div class="col-spacer col-12 d-md-none"></div>
                 <div class="col-md-5 col-sm-6 fuckBootstrap info-labels">
                     <ul class="noMarker">
                         <li>Marque</li>
-                        @foreach (StatistiqueString Statistque in Model.Statistiques)
+                        @foreach (StatistiqueString Statistque in Model.Carte.Statistiques)
                         {
                             <li>@Statistque.Nom</li>
                         }
@@ -34,8 +35,8 @@
                 </div>
                 <div class="col-md-5 col-sm-6 fuckBootstrap card-info">
                     <ul class="noMarker">
-                        <li>@Model.Marque.Nom</li>
-                        @foreach (StatistiqueString Statistque in Model.Statistiques)
+                        <li>@Model.Carte.Marque.Nom</li>
+                        @foreach (StatistiqueString Statistque in Model.Carte.Statistiques)
                         {
                             <li>@Statistque.Valeur</li>
                         }
@@ -46,7 +47,7 @@
                     </ul>
                 </div>
             </div>
-            @if (Model.EstVedette)
+            @if (Model.Carte.EstVedette)
             {
                 <div class="row">
                     <div class="col-md-2 col-sm-12">
@@ -56,22 +57,36 @@
             }
             <div class="row">
             <div class="col-md-2 col-sm-12">
-                <form id="searchForm" class="row" action="https://www.w3schools.com/action_page.php" method="POST">
-                    <div class="col-1"></div>
-                    <div class="col-10">
-                        <div class="row justify-content-between">
-                            <input class="col-auto" type="text" name="carteFav" value="@Model.Nom" hidden fill-background rounded-corners rounded-corners-padding-small />
-                            <button class="col-auto" type="submit" value="Favoris" fill-background rounded-corners rounded-corners-padding-small><i class="fa-solid fa-star"></i> Ajouter au favoris?</button>
+                    @if (!Model.EstFavoris)
+                    {
+                        <form asp-controller="Favoris" asp-action="AjouterUnFavoris" class="row justify-content-around" method="POST">
+                            <input type="text" hidden name="id" value="@(Model.Carte.Id)">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <div class="row justify-content-between">
+                                <button class="col-auto" type="submit" value="Favoris" fill-background rounded-corners rounded-corners-padding-small><i class="fa-solid fa-star"></i> Ajouter aux favoris?</button>
+                            </div>
+                            <br />
                         </div>
-                        <br />
-                    </div>
-                </form>
+                    </form>}
+                    else{
+                        <form asp-controller="Favoris" asp-action="RetirerUnFavoris" class="row justify-content-around" method="POST">
+                            <input type="text" hidden name="id" value="@(Model.Carte.Id)">
+                            <div class="col-1"></div>
+                            <div class="col-10">
+                                <div class="row justify-content-between">
+                                    <button class="col-auto" type="submit" value="Favoris" fill-background rounded-corners rounded-corners-padding-small><i class="fa-solid fa-star"></i> Retirer des favoris?</button>
+                                </div>
+                                <br />
+                            </div>
+                        </form>
+                    }
             </div>
         </div>
         <div class="row">
             <div class="col-12 description-carte">
                 <h2>Description</h2>
-                <p>Paragraphe de description sur la carte @Model.Nom: @Model.Description</p>
+                <p>Paragraphe de description sur la carte @Model.Carte.Nom: @Model.Carte.Description</p>
             </div>
         </div>
     </main>

@@ -1,4 +1,6 @@
-﻿using System.Net.NetworkInformation;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Net.NetworkInformation;
+using System.Xml.Linq;
 
 namespace MonTPTest.Models
 {
@@ -6,6 +8,7 @@ namespace MonTPTest.Models
     {
         private string m_nom;
         private string m_valeur;
+        [Display(Name = "Nom de la statistique")]
         public string Nom
         {
             get
@@ -13,6 +16,7 @@ namespace MonTPTest.Models
                 return m_nom;
             }
         }
+        [Display(Name = "Valeur de la statistique")]
         public string Valeur
         {
             get

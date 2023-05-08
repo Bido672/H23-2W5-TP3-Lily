@@ -1,11 +1,14 @@
 ﻿using Microsoft.VisualBasic;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace MonTPTest.Models
 {
     public class CarteGraphique
     {
         private int m_id;
+        [Display(Name = "Id de la carte")]
         public int Id { get { return m_id; } private set {
                 m_id = value;
             } }
@@ -20,9 +23,12 @@ namespace MonTPTest.Models
                 pCarte.m_id = pNewID;
             }
         }
+        [Display(Name = "Id du parent de la carte")]
         public int IdParent { get { return m_marque.Id;  } }
+        
         private MarqueDeCarte m_marque;
         private string m_nom;
+        [Display(Name = "Nom de la carte")]
         public string Nom
         {
             get
@@ -31,6 +37,7 @@ namespace MonTPTest.Models
             }
         }
         private string m_description;
+        [Display(Name = "Description de la carte")]
         public string Description
         {
             get
@@ -38,12 +45,14 @@ namespace MonTPTest.Models
                 return m_description;
             }
         }
+        [Display(Name = "Marque de la carte")]
         public MarqueDeCarte Marque { 
             get 
             { 
                 return m_marque; 
             } 
         }
+        [Display(Name = "Image de la carte")]
         public string ImageCarte
         {
             get
@@ -62,6 +71,7 @@ namespace MonTPTest.Models
             }
         }
         private bool m_vedette;
+        [Display(Name = "Est-elle vedette?")]
         public bool EstVedette
         {
             get
@@ -70,6 +80,7 @@ namespace MonTPTest.Models
             }
         }
         private List<StatistiqueString> m_statistiques;
+        [Display(Name = "Statistiques")]
         public List<StatistiqueString> Statistiques
         {
             get

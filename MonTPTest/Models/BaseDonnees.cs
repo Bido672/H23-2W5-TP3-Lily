@@ -95,6 +95,10 @@ namespace MonTPTest.Models
         {
             return m_cartes.Where((CarteGraphique maCarte) => { return pFavoris.ToArray().Contains(maCarte.Nom); }).ToList();
         }
+        public List<CarteGraphique> ObtenirFavoris(List<int> pFavoris)
+        {
+            return m_cartes.Where((CarteGraphique maCarte) => { return pFavoris.ToArray().Contains(maCarte.Id); }).ToList();
+        }
         public CarteGraphique? TrouverCarte(string id)
         {
             CarteGraphique? carteAVisioner = null;

@@ -1,0 +1,334 @@
+/*Pour la requete @media*/
+:root {
+    --text-color: black;
+    --background-color: white;
+
+    
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --text-color: #ffffff;
+        --background-color: #00000090;
+        --background-color-striped: #2c2c2c90;
+        
+    }
+  }
+  
+@media (prefers-color-scheme: light) {
+    :root{
+        --text-color: #000000;
+        --background-color: #ffffff90;
+        --background-color-striped: #d3d3d390;
+    }
+  }
+:root{
+    /* Mes variables */
+    --header-height: 10vh;
+    --footer-height: 5vh;
+    --footer-header-max-width: 100%;
+    --footer-header-width: 100%;
+    --border-radius: 25px;
+    --border: 3px solid var(--text-color);
+    --shrink-transition: all 1000ms ease-in-out;
+    --header-accueil-background-color: var(--background-color);
+    --header-not-accueil-background-color: var(--background-color);
+}
+table tr,  table td, table th, table {
+    border: 0px solid black;
+}
+*[fill-background]{
+    background-color: var(--background-color);
+}
+*[custom-border]{
+    border: var(--border);
+    
+}
+*[rounded-corners]{
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+*[margin-a-bit]{
+    margin-top: 2px;
+}
+.myThing {
+    height: 100%;
+}
+*{
+    color: var(--text-color);
+    -webkit-transition: var(--shrink-transition);
+    -moz-transition: var(--shrink-transition);
+    transition: var(--shrink-transition);
+}
+td a{
+    color: var(--text-color);
+}
+body#header{
+    height: 100%;
+}
+html {
+    -webkit-transition: none;
+    -moz-transition: none;
+    transition: none;
+    background-image: linear-gradient(to bottom right, #0088ff, #ff00f7);
+    background-color: transparent;
+    
+}
+body {
+    /*background-image: linear-gradient(to bottom right, #0088ff, #ff00f7);*/
+    background-image: none;
+    background-color: transparent;
+}
+body#accueil{
+    --header-color: var(--header-accueil-background-color);
+}
+body:not(#accueil):not(#header){
+    --header-color: var(--header-not-accueil-background-color);
+}
+nav {
+    box-sizing: border-box;
+}
+
+nav,
+nav > iframe {
+border: 0px black solid; 
+padding: 0px;
+margin:0px;
+height: 10vh; 
+width: 100%;
+}
+.error404 {
+    text-align: center;
+}
+body{
+    padding-top: 0px;
+    margin:0px;
+    /*width: 98vw;*/
+    min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+header iframe{
+    width: 100%;
+    height: var(--header-height);
+    padding: 0px !important;
+}
+.row{
+    display: flex; /* Mode de display non vu*/
+    flex-wrap: wrap; /* Vas avec le flex. Bootstrap utilise ceci...*/
+}
+.bruh {
+    background-color: #eb0ce6;
+    height: 100vh;
+    box-sizing: border-box;
+    text-align: center;
+    width: 100vw;
+    display: flex;
+    justify-content: space-between; 
+}
+.liens{
+    display:flex;
+    justify-content: space-between;
+}
+footer{
+    position: relative;
+    
+    bottom: 0px;
+    height: var(--footer-height);
+    background-color: #69696969;
+}
+footer p {
+    text-align: center;
+    margin-bottom: 0px
+}
+footer span {
+    color: blue;
+}
+header {
+    z-index: 1;
+    position: fixed;
+    top: 0px;
+    height: var(--header-height);
+    background-color: var(--header-color);
+    border-radius: 0px 0px var(--border-radius) var(--border-radius);
+    border-bottom: var(--border);
+    overflow: hidden;
+}
+main{
+    --main-padding-top-bottom: 3vh;
+    --main-padding-left-right: 5vw;
+    margin-top: calc(var(--header-height)  + var(--footer-height));
+    margin-bottom: calc(var(--footer-height));
+    padding-top: var(--main-padding-top-bottom);
+    padding-bottom: var(--main-padding-top-bottom);
+    padding-left: var(--main-padding-left-right);
+    padding-right: var(--main-padding-left-right);
+    width: 100vw;
+    height: calc( 100% - var(--header-height) - var(--footer-height))
+}
+footer,
+header{
+    width: var(--footer-header-width) !important;
+    max-width: var(--footer-header-max-width) !important;
+}
+.marque{
+    --margin: 1%;
+    margin: var(--margin);
+    padding: 2%;
+    
+}
+@media (max-width: 768px){
+    .marque {
+        width: calc(100% - var(--margin) * 2)
+    }
+}
+.marques {
+    padding-top: 5%;
+}
+.marque-desc p {
+    text-align: justify;
+}
+h1,
+.marque-nom {
+    text-align: center;
+}
+a{
+    text-decoration: none;
+}
+.marque img{
+    max-width: 75%;
+    padding: 0px;
+    min-height: 50%;
+}
+div.carte {
+    z-index: 0;
+    margin: 10px;
+    box-sizing: border-box;
+} 
+div.carte .nom-carte{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: max-content;
+    padding: 5px;
+}
+div.carte {
+    position: relative;
+    overflow: hidden;
+}
+div.carte[nvidia] .nom-carte {
+    background-color: #00ff00ae;
+}
+    div.uneCarte[marque-carte="Nvidia"],
+    div.carte[marque-carte="Nvidia"] {
+        --carte-background-color: #00ff00ae;
+    } 
+
+div.carte[marque-carte="AMD"] .nom-carte {
+    background-color: #ff0000ae;
+}
+    div.uneCarte[marque-carte="AMD"],
+    div.carte[marque-carte="AMD"] {
+        --carte-background-color: #ff0000ae;
+    } 
+div.carte[marque-carte="Intel"] .nom-carte
+{
+    background-color: #0077ffae;
+}
+    div.uneCarte[marque-carte="Intel"],
+    div.carte[marque-carte="Intel"] {
+        --carte-background-color: #0077ffae;
+    }
+    div.carte[marque-carte="Error"] .nom-carte {
+        background-color: #ff0000ae;
+    }
+    div.carte[marque-carte="Error"] {
+        --carte-background-color: #ff0000ae;
+    } 
+div.carte::before{
+    content: attr(nom-carte);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: max-content;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    text-align: right;
+    background-color: var(--carte-background-color);
+}
+div.uneCarte,
+div.cartea {
+   position: relative;
+}
+div.carte::after{
+    content: attr(marque-carte); /* Définis le contenu d'un ::after ou ::before*/
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: min-content;
+    padding: 5px;
+    border-radius: var(--border-radius);
+    text-align: right;
+    background-color: var(--carte-background-color);
+}
+.overlayDelete {
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    width: min-content;
+    padding: 5px;
+    border-radius: 300px;
+    text-align: right;
+    background-color: var(--carte-background-color);
+    display: inline;
+}
+    .overlayDelete *,
+    .inlineForRoundButton,
+    .inlineForRoundButton *{
+        display: inline;
+    }
+    *[hidden] {
+        display: none;
+        position: fixed;
+    }
+*[rounded-corners-padding-small]{
+    padding: 7px 10px;
+}
+.noMarker ::marker{
+    color: transparent;
+}
+.col-spacer{
+    height: 10vh;
+}
+
+@media only screen and (max-width: 992px) {
+    /*sm and less*/
+    .fuckBootstrap{
+        width: 50%;
+    }
+    header span {
+        display: none;
+    }
+}
+@media only screen and (min-width: 992px) {
+    /*md and more*/
+    .fuckBootstrap{
+        width: 41%;
+    }
+    header span {
+        display: inline;
+    }
+}
+ol,
+ol li{
+    width: max-content;
+}
+
+/*Modification a bootstrap*/
+
+    .table-striped>tbody>tr:nth-of-type(odd) {
+        --bs-table-accent-bg: var(--background-color-striped);
+        color: var(--background-color-striped);
+    }
+
+#searchForm {
+    margin: 10px;
+}

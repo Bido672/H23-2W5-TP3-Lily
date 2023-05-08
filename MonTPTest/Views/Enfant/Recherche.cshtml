@@ -1,0 +1,107 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model MonTPTest.Models.ViewDataRecherche;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section title {
+    <title>Recherche</title>
+}
+<body>
+    <main class="container" custom-border fill-background rounded-corners>
+        <div class="row">
+            <div class="col-12">
+                <h1>Liste des cartes graphiques</h1>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.Cartes.Count != 0)
+            {
+                <div id="liste-des-cartes" class="col-12 col-md-9 order-1 order-md-0">
+                    <div class="row cartes">
+                        @foreach (CarteGraphique Carte in Model.Cartes)
+                        {
+                            <partial name="_CartePartial" for="@Carte"/>
+                            /*<a href="@Url.Action("Details", "Carte", new { id = Carte.Nom.ToUpper()})" class="col-sm-12 col-md-4">
+                                <div class="carte" marque-carte="@(Carte.Marque.Nom)" nom-carte="@(Carte.Nom.ToUpper())" custom-border rounded-corners>
+                                    <img class="img-fluid" src="@(Carte.ImageCarte)" alt="@(Carte.ToStringForView())" />
+                                </div>
+                            </a>*/
+                        }
+                    </div>
+                </div>
+            }
+            else{
+                <div id="liste-des-cartes" class="col-12 col-md-9 order-1 order-md-0">
+                    <div class="row cartes">
+                        <p class="error404">Error 404... Pas de cartes trouvées...</p>
+                    </div>
+                </div>
+            }
+            <div id="form-de-recherche" class="col-12 col-md-3 order-0 order-md-1">
+                <p>Le form des cartes</p>
+                <form asp-controller="Enfant" asp-action="Recherche" method="post">
+                    <div class="col-12">
+                        <div class="row">
+                            <label asp-for="MotCle"></label>
+                            <input type="text" asp-for="MotCle" placeholder="Mot-clé..." fill-background rounded-corners rounded-corners-padding-small />
+                        </div>
+                        <div class="row justify-content-between">
+                            <label asp-for="Min"></label>
+                            <input type="number" asp-for="Min" class="col-5" fill-background rounded-corners rounded-corners-padding-small />
+                            <input type="number" asp-for="Max" class="col-5" fill-background rounded-corners rounded-corners-padding-small />
+                        </div>
+                        <div class="row justify-content-between">
+                            <label asp-for="estVedette"></label>
+                            <select asp-for="estVedette" asp-items="Model.estVedetteItems" fill-background rounded-corners rounded-corners-padding-small></select>
+                            
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-12">
+                                <label asp-for="marques"></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <div class="col-12">
+                                <input type="checkbox" asp-for="marqueNvidia" fill-background rounded-corners rounded-corners-padding-small />
+                                <label asp-for="marqueNvidia"></label>
+                            </div>
+                            <div class="col-12">
+                                <input type="checkbox" asp-for="marqueAMD" fill-background rounded-corners rounded-corners-padding-small />
+                                <label asp-for="marqueAMD"></label>
+                            </div>
+                            <div class="col-12">
+                                <input type="checkbox" asp-for="marqueIntel" fill-background rounded-corners rounded-corners-padding-small />
+                                <label asp-for="marqueIntel"></label>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between">
+                            <button class="col-auto" type="button" title="ResetForm" onclick="resetForm();" fill-background rounded-corners rounded-corners-padding-small>Réinitialiser</button>
+                            <input class="col-auto" type="submit" value="Rechercher" fill-background rounded-corners rounded-corners-padding-small />
+                        </div>
+                        <br />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <script type="text/javascript">
+        function resetForm() {
+            var form = document.querySelector("#searchForm");
+            form.querySelectorAll("input").forEach((inputField) => {
+                if (inputField.type == "button" || inputField.type == "submit") {
+                    return;
+                } else if (inputField.type == "checkbox") {
+                    inputField.checked = true;
+                } else if (inputField.type == "text") {
+                    inputField.value = "";
+                } else if (inputField.type == "number") {
+                    inputField.value = "";
+                }
+            });
+            form.querySelectorAll("select").forEach((inputField) => {
+                inputField.options.selectedIndex = 0;
+            });
+            editPage();
+        }
+    </script>
+</body>

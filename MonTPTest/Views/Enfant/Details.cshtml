@@ -1,0 +1,89 @@
+﻿@Model MonTPTest.Models.CarteGraphique;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section title {
+    <title>Détails</title>
+}
+<body id="details">
+    @if (Model != null)
+    {
+        <main id="infoCarte" marque-carte="@Model.Marque.Nom" class="container" custom-border rounded-corners fill-background>
+            <div class="row">
+                <div class="col-12">
+                    <h1 id="nomCarte">@Model.Nom</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2 col-sm-12">
+                    <img class="img-fluid" src="@Model.ImageCarte" alt="@Model.ToString()" custom-border rounded-corners fill-background />
+                </div>
+                <div class="col-spacer col-12 d-md-none"></div>
+                <div class="col-md-5 col-sm-6 fuckBootstrap info-labels">
+                    <ul class="noMarker">
+                        <li>Marque</li>
+                        @foreach (StatistiqueString Statistque in Model.Statistiques)
+                        {
+                            <li>@Statistque.Nom</li>
+                        }
+                        <!--<li>VRAM</li>
+                        <li>Type de VRAM</li>
+                        <li>Coeurs gpu</li>
+                        <li>TDP</li>-->
+                    </ul>
+                </div>
+                <div class="col-md-5 col-sm-6 fuckBootstrap card-info">
+                    <ul class="noMarker">
+                        <li>@Model.Marque.Nom</li>
+                        @foreach (StatistiqueString Statistque in Model.Statistiques)
+                        {
+                            <li>@Statistque.Valeur</li>
+                        }
+                        <!--<li>Q_VRAM</li>
+                        <li>TYPE_DE_VRAM</li>
+                        <li>NB_COEURS_GPU</li>
+                        <li>TDP_W</li>-->
+                    </ul>
+                </div>
+            </div>
+            @if (Model.EstVedette)
+            {
+                <div class="row">
+                    <div class="col-md-2 col-sm-12">
+                        <h2><span class="badge bg-secondary">Carte Vedette</span></h2>
+                    </div>
+                </div>
+            }
+            <div class="row">
+            <div class="col-md-2 col-sm-12">
+                <form id="searchForm" class="row" action="https://www.w3schools.com/action_page.php" method="POST">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <div class="row justify-content-between">
+                            <input class="col-auto" type="text" name="carteFav" value="@Model.Nom" hidden fill-background rounded-corners rounded-corners-padding-small />
+                            <button class="col-auto" type="submit" value="Favoris" fill-background rounded-corners rounded-corners-padding-small><i class="fa-solid fa-star"></i> Ajouter au favoris?</button>
+                        </div>
+                        <br />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 description-carte">
+                <h2>Description</h2>
+                <p>Paragraphe de description sur la carte @Model.Nom: @Model.Description</p>
+            </div>
+        </div>
+    </main>
+    }
+    else{
+        <main id="infoCarte" marque-carte="Unknown" class="container" custom-border rounded-corners fill-background>
+            <div class="row">
+                <div class="col-12">
+                    <h1 id="nomCarte">Error 404. Carte non trouvée.</h1>
+                </div>
+            </div>
+        </main>
+    }
+
+    </body>

@@ -1,0 +1,25 @@
+﻿@using MonTPTest.Models;
+@model MonTPTest.Models.CarteGraphique
+@if (Model != null)
+{
+    <div class="col-sm-12 col-md-4 uneCarte" marque-carte="@(Model.Marque.Nom)">
+        <a href="@Url.Action("Details", "Enfant", new { id = Model.Nom.ToUpper()})" class="col-sm-12 col-md-4 cartea">
+            <div class="carte" marque-carte="@(Model.Marque.Nom)" nom-carte="@(Model.Nom.ToUpper())" custom-border rounded-corners>
+                <img class="img-fluid" src="@(Model.ImageCarte)" alt="@(Model.ToStringForView())">
+            </div>
+        </a>
+        <div class="overlayDelete">
+            <a href="@Url.Action("Delete", "Editor", new { id = Model.Nom.ToUpper()})">
+                &nbsp;&nbsp;&nbsp;<i class="fa-regular fa-trash-can"></i>&nbsp;&nbsp;&nbsp;
+            </a>
+        </div>
+    </div>
+
+}
+else{
+    <a href="" class="col-sm-12 col-md-4">
+        <div class="carte" marque-carte="Error" nom-carte="Error" custom-border rounded-corners>
+            <img class="img-fluid" src="/images/cartes/error/error.png" alt="Error" />
+        </div>
+    </a>
+}

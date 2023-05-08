@@ -1,0 +1,64 @@
+html,
+body{
+    height: 100%;
+    width: 100%;
+    background-color: transparent;
+}
+
+:root {
+    --text-color: black;
+    --background-color: white;
+    --header-accueil-background-color: #ff800090;
+    --header-not-accueil-background-color: #00ff2690;
+    
+}
+
+@media (prefers-color-scheme: dark) {
+    :root{
+        --text-color: #ffffff;
+        --background-color: #00000090;
+        
+    }
+  }
+  
+@media (prefers-color-scheme: light) {
+    :root{
+        --text-color: #000000;
+        --background-color: #ffffff90;
+    }
+  }
+:root{
+    /* Mes variables */
+    --header-height: 10vh;
+    --footer-height: 5vh;
+    --footer-header-max-width: 100%;
+    --footer-header-width: 100%;
+    --border-radius: 25px;
+    --border: 3px solid var(--text-color);
+    --shrink-transition: all 1000ms ease-in-out;
+}
+
+*[fill-background]{
+    background-color: var(--background-color);
+}
+*[custom-border]{
+    border: var(--border);
+    
+}
+*[rounded-corners]{
+    border-radius: var(--border-radius);
+}
+*{
+    color: var(--text-color);
+    -webkit-transition: var(--shrink-transition);
+    -moz-transition: var(--shrink-transition);
+    transition: var(--shrink-transition);
+}
+nav{
+    height: 100%
+}
+
+a,
+a * {
+    text-decoration: none;
+}

@@ -1,8 +1,8 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model MonTPTest.Models.CarteGraphique
 
-@{
-    ViewData["Title"] = "View";
+@section title {
+    <title>Supprimer un enfant</title>
 }
 
 <h1>View</h1>
@@ -50,8 +50,8 @@
         </dd>
     </dl>
     
-    <form asp-action="View">
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
-        <a asp-action="Index">Back to List</a>
+    <form asp-action="Delete">
+        <input type="text" name="id" value="@Model.Id" hidden/>
+        <input type="submit" value="Supprimer" class="btn btn-danger" />
     </form>
 </div>

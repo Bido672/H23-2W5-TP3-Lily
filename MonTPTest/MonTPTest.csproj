@@ -11,9 +11,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Session" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
   </ItemGroup>
+	<ItemGroup>
+		<_CustomFiles Include="$(MSBuildProjectDirectory)/bd/**" />
+		<DotNetPublishFiles Include="@(_CustomFiles)">
+			<DestinationRelativePath>bd/%(RecursiveDir)%(Filename)%(Extension)</DestinationRelativePath>
+		</DotNetPublishFiles>
+	</ItemGroup>
 
   <ItemGroup>
-	  <Folder Include="BD\"/>
+	  <Folder Include="BD\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath64)\Microsoft\VisualStudio\v.*\Web\Microsoft.Web.Publishing.targets" />
 </Project>

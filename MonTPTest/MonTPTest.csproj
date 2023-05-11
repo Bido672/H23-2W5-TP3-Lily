@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BD\" />
+	  <Folder Include="BD\"/>
   </ItemGroup>
-
+  <Import Project="$(MSBuildExtensionsPath64)\Microsoft\VisualStudio\v.*\Web\Microsoft.Web.Publishing.targets" />
 </Project>

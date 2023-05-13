@@ -85,6 +85,10 @@ namespace MonTPTest.Models
                 CarteGraphique.Parse("18|A750|Funny|NOM_STATISTIQUE:STATISTIQUE;NOM_STATISTIQUE:STATISTIQUE|false|INTEL|3", m_marques[2]),
                 CarteGraphique.Parse("19|A770|Funny|NOM_STATISTIQUE:STATISTIQUE;NOM_STATISTIQUE:STATISTIQUE|false|INTEL|3", m_marques[2]),
             };*/
+            for(int i  =0; i < 5000; i++)
+            {
+                m_cartes.Add(CarteGraphique.Random(this));
+            }
             m_marques.ForEach((MarqueDeCarte oMarque) =>
             {
                 MarqueDeCarte.AddAllChildren(oMarque, m_cartes);

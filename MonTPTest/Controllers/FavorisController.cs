@@ -53,6 +53,7 @@ namespace MonTPTest.Controllers
             {
                 return col.ToList().Find(item => { return item.Key == key; }).Value[0].ToString();
             };
+            
             var enfantIDs = HttpContext.Session.Get<List<int>>("enfantsIDs");
             if (enfantIDs == null)
             {
